@@ -1,12 +1,41 @@
+import { CommonModule } from '@angular/common';
+import { Competition } from './../../models/competition';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CompetitionService } from '../../services/competition/competition.service';
 
 @Component({
   selector: 'app-competition',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterLink],
   templateUrl: './competition.component.html',
   styleUrl: './competition.component.css'
 })
 export class CompetitionComponent {
+
+  competitions: Competition[] = [];
+
+  constructor(private competitionService: CompetitionService) { }
+
+  ngOnInit(): void {
+    this.competitionService.getCompetitions().subscribe((data: Competition[]) => {
+      this.competitions = data;
+    })
+  }
+
+  compareDateWithCurrentDate(competitionDate: Date | undefined): number {
+    if (competitionDate) {
+      const dateObject = new Date(competitionDate);
+      const currentDate = new Date();
+      currentDate.setHours(1);
+      currentDate.setMinutes(0);
+      currentDate.setSeconds(0);
+      currentDate.setMilliseconds(0);
+      if (dateObject.getTime() > currentDate.getTime()) return 1;
+      else if (dateObject.getTime() == currentDate.getTime()) return 2;
+      else return 3;
+    }
+    return 0;
+  }
 
 }

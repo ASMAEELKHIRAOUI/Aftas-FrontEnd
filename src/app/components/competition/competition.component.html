@@ -1,1 +1,74 @@
-<p>competition works!</p>
+<!-- <p>Competitions ( {{ competitions.length }} )</p> -->
+<!-- <div>
+      <button>
+            add equipment
+      </button>
+</div>
+<div>
+      <form (submit)="onSubmit()">
+            <p>name</p>
+            <input type="text" name="name" [(ngModel)] = "toSave.name">
+            <p>quantity</p>
+            <input type="number" name="quantity"  [(ngModel)] = "toSave.quantity" >
+            <p>Family id</p>
+            <input type="number" name="family_id"  [(ngModel)] = "toSave.equipmentFamilyId" >
+            <button type="submit">save</button>
+      </form>
+</div> -->
+<div class="row clearfix">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" *ngFor="let competition of competitions">
+        <div class="card">
+            <div class="body product_item">
+                <span  [ngClass]="{'label':true,'onsale': compareDateWithCurrentDate(competition.date) == 2,'new': compareDateWithCurrentDate(competition.date) == 3,'  trending': compareDateWithCurrentDate(competition.date) == 1 } ">
+                    {{(compareDateWithCurrentDate(competition.date) == 3)?'Finished!':(compareDateWithCurrentDate(competition.date) == 1)?'Ongoing':'Upcoming...'}}
+                </span>
+                <img src="assets/images/image-gallery/726.jpg" alt="Competition" class="img-fluid cp_img" />
+                <div class="product_details">
+                    <a href="ec-product-detail.html">{{ competition.location }}</a>
+                    <ul class="product_price list-unstyled">
+                        <li class="old_price">{{ competition.date }}</li>
+                        <li class="new_price">{{ competition.numberOfParticipants }}</li>
+                    </ul>                                
+                </div>
+                <!-- <div class="action">
+                    <a href="javascript:void(0);" class="btn btn-info waves-effect"><i class="zmdi zmdi-eye"></i></a>
+                    <a href="javascript:void(0);" class="btn btn-primary waves-effect">ADD TO CART</a>
+                </div> -->
+            </div>
+        </div> 
+    </div>
+</div>
+<!-- <a routerLink="/reservations" routerLinkActive="active" ariaCurrentWhenActive="page">reservations</a></p> -->
+    <!-- <table>
+        <thead>
+              <tr>
+                    <th scope="col">
+                          ID
+                    </th>
+
+                    <th scope="col">
+                          name
+                    </th>
+
+                    <th scope="col">
+                          quantity
+                    </th>
+              </tr>
+        </thead>
+        <tbody>
+
+              <tr *ngFor="let equipment of equipments">
+                    <td>
+                      {{ equipment.id }}
+                    </td>
+                    <td>
+                      {{ equipment.name }}
+                    </td>
+                    <td>
+                      {{ equipment.quantity }}
+                    </td>
+              </tr>
+
+        </tbody>
+  </table> -->
+<!-- </div> -->
