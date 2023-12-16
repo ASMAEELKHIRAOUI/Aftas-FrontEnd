@@ -1,1 +1,33 @@
-<p>create-competition works!</p>
+<div>
+    <form (submit)="onSubmit()" class="m-3">
+        <h3>Add a Competition!</h3>
+        <div class="col-sm-5 mt-5">
+            <p>Date</p>
+            <input type="date" class="form-control border border-dark" name="date"  [(ngModel)] = "toSave.date">
+        </div>
+        <div class="col-sm-5 mt-5">
+            <p>Starting time</p>
+            <input type="time" class="form-control border border-dark" name="startTime" [(ngModel)] = "toSave.startTime">
+        </div>
+        <div class="col-sm-5 mt-5">
+            <p>Ending time</p>
+            <input type="time" class="form-control border border-dark" name="endTime" [(ngModel)] = "toSave.endTime">
+        </div>
+        <div class="col-sm-5 mt-5">
+            <p>Number of participants</p>
+            <input type="number" class="form-control border border-dark" name="numberOfParticipants" [(ngModel)] = "toSave.numberOfParticipants">
+        </div>
+        <div class="col-sm-5 mt-5">
+            <p>location</p>
+            <input type="text" class="form-control border border-dark" name="location" [(ngModel)] = "toSave.location">
+        </div>
+        <div class="col-sm-5 mt-5">
+            <p>Amount</p>
+            <input type="number" class="form-control border border-dark" name="amount" [(ngModel)] = "toSave.amount">
+        </div>
+        <div class="m-4 d-flex justify-content-end">
+            <button type="submit" class="btn btn-secondary btn-block fs-6 mx-2"  routerLink="/">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-block fs-6">Save Competition</button>
+        </div>
+    </form>
+</div>

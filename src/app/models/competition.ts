@@ -11,12 +11,12 @@ export interface Competition {
 }
 export class CCompetition implements Competition{
     constructor( 
-     public code: number,
-     public date: Date,
-     public startTime: Time,
-     public endTime: Time,
-     public numberOfParticipants: number,
-     public location: string,
-     public amount: number
+     public code?: number,
+     public date?: Date,
+     public startTime?: Time,
+     public endTime?: Time,
+     public numberOfParticipants?: number,
+     public location?: string,
+     public amount?: number
     ){}
 }

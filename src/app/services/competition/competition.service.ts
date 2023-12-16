@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Competition } from '../../models/competition';
+import { ResponseModel } from '../../core/request/response.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-type' : 'application/json'})
@@ -20,5 +21,9 @@ export class CompetitionService {
     return this.http.get<Competition[]>(this.apiUrl).pipe(
         map((res: any) => res.data)
     )
+  }
+
+  addEquipments(competition: Competition): Observable<ResponseModel<Competition>>{
+    return this.http.post<ResponseModel<Competition>>(this.apiUrl, competition);
   }
 }
