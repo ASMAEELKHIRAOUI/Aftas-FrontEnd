@@ -38,10 +38,17 @@ export class CompetitionComponent {
     return 0;
   }
 
-  openPodium(competitionCode: string | undefined): void{
+  registerMember(competitionCode: string | undefined): void{
     if (competitionCode) {
       console.log('Competition Code:', competitionCode);
       this.router.navigate(['/register-member', competitionCode]);
+    }
+  }
+
+  viewParticipants(competitionCode: string | undefined): void{
+    if (competitionCode) {
+      console.log('Competition Code:', competitionCode);
+      this.router.navigate(['/insert-results', competitionCode]);
     }
   }
 

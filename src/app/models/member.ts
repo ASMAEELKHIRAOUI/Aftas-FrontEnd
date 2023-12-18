@@ -1,5 +1,5 @@
 export interface Member {
-    number?: number,
+    number: number,
     name?: string,
     familyName?: string,
     accessionDate?: Date,
@@ -10,7 +10,7 @@ export interface Member {
 
 export class CMember implements Member {
     constructor(
-        public number?: number,
+        public number: number,
         public name?: string,
         public familyName?: string,
         public accessionDate?: Date,

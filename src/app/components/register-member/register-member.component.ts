@@ -47,7 +47,7 @@ export class RegisterMemberComponent {
     });
   }
 
-  registerMember(member: number | undefined): void{
+  registerMember(member: number): void{
     // console.log(new CRanking(member, this.competitionCode));
     this.register_member.registerMember(new CRanking(member, this.competitionCode)).subscribe({
       next: data => {

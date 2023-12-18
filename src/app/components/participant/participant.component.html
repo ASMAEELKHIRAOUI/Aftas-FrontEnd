@@ -1,4 +1,4 @@
-<input [formControl]="searchControl" type="search" placeholder="Search..." autocomplete="off" class="form-control w-25 my-3 border border-dark">
+<!-- <input [formControl]="searchControl" type="search" placeholder="Search..." autocomplete="off" class="form-control w-25 my-3 border border-dark"> -->
 <div class="row clearfix">
   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" *ngFor="let member of members">
       <div class="card">
@@ -14,7 +14,7 @@
               <div class="action row ps-2">
                   {{ member.identityNumber }}
                   <div class="my-2 row">
-                      <a (click)="registerMember(member.number)" class="btn btn-primary waves-effect fs-6">Add to competition</a>
+                      <a class="btn btn-primary waves-effect fs-6">Insert hunting</a>
                   </div>
               </div>
           </div>

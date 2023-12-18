@@ -19,8 +19,9 @@
                 <div class="action row ps-2">
                     Time: {{ competition.startTime }} - {{ competition.endTime }}
                     <div class="my-2 row">
-                        <a class="btn btn-info waves-effect fs-6" (click)="openPodium(competition.code)">Register member</a>
-                        <a href="javascript:void(0);" class="btn btn-primary waves-effect fs-6">View results</a>
+                        <a class="btn btn-info waves-effect fs-6" (click)="registerMember(competition.code)">Register member</a>
+                        <a class="btn btn-primary waves-effect fs-6" (click)="viewParticipants(competition.code)">View participants</a>
+                        <a href="javascript:void(0);" class="btn btn-warning waves-effect fs-6">View results</a>
                     </div>
                 </div>
             </div>
