@@ -1,7 +1,7 @@
 import { Time } from "@angular/common";
 
 export interface Competition {
-    code?: number;
+    code?: string;
     date?: Date;
     startTime?: Time;
     endTime?: Time;
@@ -11,7 +11,7 @@ export interface Competition {
 }
 export class CCompetition implements Competition{
     constructor( 
-     public code?: number,
+     public code?: string,
      public date?: Date,
      public startTime?: Time,
      public endTime?: Time,

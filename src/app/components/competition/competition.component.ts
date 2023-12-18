@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Competition } from './../../models/competition';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CompetitionService } from '../../services/competition/competition.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class CompetitionComponent {
 
   competitions: Competition[] = [];
 
-  constructor(private competitionService: CompetitionService) { }
+  constructor(private competitionService: CompetitionService, private router: Router) { }
 
   ngOnInit(): void {
     this.competitionService.getCompetitions().subscribe((data: Competition[]) => {
@@ -36,6 +36,13 @@ export class CompetitionComponent {
       else return 3;
     }
     return 0;
+  }
+
+  openPodium(competitionCode: string | undefined): void{
+    if (competitionCode) {
+      console.log('Competition Code:', competitionCode);
+      this.router.navigate(['/register-member', competitionCode]);
+    }
   }
 
 }

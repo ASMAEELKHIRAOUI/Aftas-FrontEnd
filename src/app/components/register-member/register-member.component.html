@@ -1,1 +1,30 @@
-<p>register-member works!</p>
+<!-- <div class="mail-compose mb-4 d-flex justify-content-end">
+    <a routerLink="/add-component" class="btn btn-primary btn-block fs-6">+ Add Competition</a>
+</div> -->
+<input [formControl]="searchControl" type="search" placeholder="Search..." autocomplete="off" class="form-control w-25 my-3 border border-dark">
+<div class="row clearfix">
+  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" *ngFor="let member of members">
+      <div class="card">
+          <div class="body product_item">
+              <!-- <span  [ngClass]="{'label':true,'onsale': compareDateWithCurrentDate(competition.date) == 2,'new': compareDateWithCurrentDate(competition.date) == 3,'  trending': compareDateWithCurrentDate(competition.date) == 1 } ">
+                  {{(compareDateWithCurrentDate(competition.date) == 3)?'Finished!':(compareDateWithCurrentDate(competition.date) == 1)?'Upcoming...':'Ongoing'}}
+              </span> -->
+              <img src="assets/images/image-gallery/avatar.jpg" alt="Competition" class="img-fluid cp_img" />
+              <div class="product_details">
+                  <h5>{{ member.name }} {{ member.familyName }}</h5>
+                  <ul class="product_price list-unstyled">
+                      <li class="old_price">{{ member.number }}</li>
+                      <li class="new_price">{{ member.nationality }}</li>
+                  </ul>                                
+              </div>
+              <div class="action row ps-2">
+                  {{ member.identityNumber }}
+                  <div class="my-2 row">
+                      <!-- <a class="btn btn-info waves-effect fs-6"  (click)="openPodium(competition.code)">Register member</a> -->
+                      <a (click)="registerMember(member.number)" class="btn btn-primary waves-effect fs-6">Add to competition</a>
+                  </div>
+              </div>
+          </div>
+      </div> 
+  </div>
+</div>
