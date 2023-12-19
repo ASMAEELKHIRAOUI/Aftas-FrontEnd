@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Member } from '../../models/member';
 import { CommonModule } from '@angular/common';
 import { Ranking } from '../../models/ranking';
@@ -18,7 +18,7 @@ export class ParticipantComponent {
 
   competitionCode: string = '';
 
-  constructor(private participant: ParticipantService, private route: ActivatedRoute) { }
+  constructor(private participant: ParticipantService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -35,7 +35,6 @@ export class ParticipantComponent {
 
   }
 
-
   fetchMembersByNumbers(numbers: number[]): void {
     this.members = [];
 
@@ -46,6 +45,12 @@ export class ParticipantComponent {
         }
       });
     });
+  }
+
+  insertHunting(member: number): void{
+    if (member) {
+      this.router.navigate(['/participants/'+this.competitionCode+'/hunting', member]);
+    }
   }
 
 }

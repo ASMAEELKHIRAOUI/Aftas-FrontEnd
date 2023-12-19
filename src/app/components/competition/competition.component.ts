@@ -48,7 +48,7 @@ export class CompetitionComponent {
   viewParticipants(competitionCode: string | undefined): void{
     if (competitionCode) {
       console.log('Competition Code:', competitionCode);
-      this.router.navigate(['/insert-results', competitionCode]);
+      this.router.navigate(['/participants', competitionCode]);
     }
   }
 

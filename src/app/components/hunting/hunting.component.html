@@ -1,0 +1,22 @@
+<div>
+    <form (submit)="onSubmit()" class="m-3">
+        <h3>Add a Hunt!</h3>
+        <div class="col-sm-5 mt-5">
+            <p>Fish</p>
+            <select class="form-select" aria-label="Default select example" [(ngModel)] = "toSave.fish" name="fish">
+                <option selected>Open this select menu</option>
+                @for (fish of fishes; track $index) {
+                    <option value="{{fish.name}}">{{fish.name}}</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-5 mt-5">
+            <p>Weight</p>
+            <input type="number" class="form-control border border-dark" name="weight" [(ngModel)] = "toSave.weight">
+        </div>
+        <div class="m-4 d-flex justify-content-end">
+            <button class="btn btn-secondary btn-block fs-6 mx-2"  routerLink="/">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-block fs-6">Save Hunting</button>
+        </div>
+    </form>
+</div>
