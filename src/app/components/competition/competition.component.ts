@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Competition } from './../../models/competition';
+import { Competition } from '../../models/competition';
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CompetitionService } from '../../services/competition/competition.service';
@@ -38,17 +38,24 @@ export class CompetitionComponent {
     return 0;
   }
 
-  registerMember(competitionCode: string | undefined): void{
+  registerMember(competitionCode: string | undefined): void {
     if (competitionCode) {
       console.log('Competition Code:', competitionCode);
       this.router.navigate(['/register-member', competitionCode]);
     }
   }
 
-  viewParticipants(competitionCode: string | undefined): void{
+  viewParticipants(competitionCode: string | undefined): void {
     if (competitionCode) {
       console.log('Competition Code:', competitionCode);
       this.router.navigate(['/participants', competitionCode]);
+    }
+  }
+
+  viewPodium(competitionCode: string | undefined): void {
+    if (competitionCode) {
+      console.log('Competition Code:', competitionCode);
+      this.router.navigate(['/podium', competitionCode]);
     }
   }
 

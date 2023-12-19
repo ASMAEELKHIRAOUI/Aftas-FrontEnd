@@ -10,8 +10,8 @@ describe('CompetitionComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CompetitionComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(CompetitionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

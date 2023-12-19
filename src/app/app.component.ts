@@ -16,7 +16,7 @@ import { CompetitionComponent } from './components/competition/competition.compo
 export class AppComponent {
   title = "aftas"
 
-  constructor(private http: HttpClient, private modalService: NgbModal) {}
+  constructor(private http: HttpClient, private modalService: NgbModal) { }
 
   public open(modal: any): void {
     this.modalService.open(modal);

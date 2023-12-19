@@ -4,10 +4,6 @@ import { Observable, map } from 'rxjs';
 import { Competition } from '../../models/competition';
 import { ResponseModel } from '../../core/request/response.model';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-type' : 'application/json'})
-};
-
 @Injectable({
   providedIn: 'root'
 })
