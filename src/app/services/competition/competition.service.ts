@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Competition } from '../../models/competition';
@@ -18,7 +18,16 @@ export class CompetitionService {
         map((res: any) => res.data)
     )
   }
-
+  getCompetitionData(params: any): Observable<any> {
+    let httpParams = new HttpParams()
+      .set('page', params['page'])
+      .set('size', params['size']);
+  
+    return this.http.post<any>(`${this.apiUrl}page`, null, {
+      reportProgress: true,
+      params: httpParams
+    });
+  }
   addCompetition(competition: Competition): Observable<ResponseModel<Competition>>{
     return this.http.post<ResponseModel<Competition>>(this.apiUrl, competition);
   }

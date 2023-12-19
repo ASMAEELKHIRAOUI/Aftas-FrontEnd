@@ -3,17 +3,24 @@ import { Competition } from '../../models/competition';
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CompetitionService } from '../../services/competition/competition.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-competition',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, NgxPaginationModule],
   templateUrl: './competition.component.html',
   styleUrl: './competition.component.css'
 })
 export class CompetitionComponent {
 
   competitions: Competition[] = [];
+  currentcompetition: Competition = {};
+  currentIndex = -1;
+  page = 1;
+  count = 0;
+  pageSize = 8;
+  pageSizes = [8, 12, 14];
 
   constructor(private competitionService: CompetitionService, private router: Router) { }
 
@@ -22,7 +29,49 @@ export class CompetitionComponent {
       this.competitions = data;
     })
   }
+  getRequestParams(page: number, pageSize: number): any {
+    let params: any = {};
 
+    if (page) {
+      params[`page`] = page - 1;
+    }
+
+    if (pageSize) {
+      params[`size`] = pageSize;
+    }
+
+    return params;
+  }
+
+  retrievecompetitions(): void {
+    const params = this.getRequestParams(this.page, this.pageSize);
+    console.log(params);
+    this.competitionService.getCompetitionData(params)
+      .subscribe(
+        response => {
+          const { competitions, totalCompetitions } = response;
+          this.competitions = competitions;
+          this.count = totalCompetitions;
+          console.log(this.count);
+          console.log(this.competitions);
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  handlePageChange(event: number): void {
+    console.log(event);
+    this.page = event;
+    this.retrievecompetitions();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.retrievecompetitions();
+  }
   compareDateWithCurrentDate(competitionDate: Date | undefined): number {
     if (competitionDate) {
       const dateObject = new Date(competitionDate);

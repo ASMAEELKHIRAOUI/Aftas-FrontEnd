@@ -2,7 +2,7 @@
       <a routerLink="/add-component" class="btn btn-primary btn-block fs-6">+ Add Competition</a>
 </div>
 <div class="row clearfix">
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" *ngFor="let competition of competitions">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" *ngFor="let competition of competitions| paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index">
         <div class="card">
             <div class="body product_item">
                 <span  [ngClass]="{'label':true,'onsale': compareDateWithCurrentDate(competition.date) == 2,'new': compareDateWithCurrentDate(competition.date) == 3,'  trending': compareDateWithCurrentDate(competition.date) == 1 } ">
@@ -27,4 +27,25 @@
             </div>
         </div> 
     </div>
+    <div class="d-flex justify-content-around">
+        <div class="col-md-10">
+          <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            [responsive]="true"
+            (pageChange)="handlePageChange($event)"
+          ></pagination-controls>
+        </div>
+        <div>
+          <div class="mb-3 d-flex justify-content-around">
+            <label for="competition" class="form-label pe-4">Competition per Page:</label>
+            <select  class="form-control" (change)="handlePageSizeChange($event)">
+                @for(size of pageSizes; track $index){
+              <option value="{{size}}">
+                {{ size }}
+              </option>
+            }
+            </select>
+          </div>
+        </div>
 </div>
