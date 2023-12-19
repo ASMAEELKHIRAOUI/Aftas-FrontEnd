@@ -19,7 +19,7 @@ export class CompetitionService {
     )
   }
 
-  addEquipments(competition: Competition): Observable<ResponseModel<Competition>>{
+  addCompetition(competition: Competition): Observable<ResponseModel<Competition>>{
     return this.http.post<ResponseModel<Competition>>(this.apiUrl, competition);
   }
 }

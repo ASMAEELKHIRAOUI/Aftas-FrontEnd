@@ -20,7 +20,7 @@ export class CreateCompetitionComponent {
   constructor(private competitionService: CompetitionService, private router: Router){}
 
   onSubmit(){
-    this.competitionService.addEquipments(this.toSave).subscribe({
+    this.competitionService.addCompetition(this.toSave).subscribe({
       next: data => {
         this.onSuccessSave(data?.data);
         this.router.navigate(['/']);

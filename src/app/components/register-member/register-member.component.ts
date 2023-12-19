@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Member } from '../../models/member';
 import { RegisterMemberService } from '../../services/register-member/register-member.service';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
@@ -21,7 +21,7 @@ export class RegisterMemberComponent {
   competitionCode: string = '';
   searchControl = new FormControl();
 
-  constructor(private register_member: RegisterMemberService, private route: ActivatedRoute) { }
+  constructor(private register_member: RegisterMemberService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -48,7 +48,6 @@ export class RegisterMemberComponent {
   }
 
   registerMember(member: number): void{
-    // console.log(new CRanking(member, this.competitionCode));
     this.register_member.registerMember(new CRanking(member, this.competitionCode)).subscribe({
       next: data => {
         this.onSuccessSave(data?.data);
@@ -61,5 +60,9 @@ export class RegisterMemberComponent {
     if(ranking){
       this.rankings.push(ranking);
     }
+  }
+
+  addMember(){
+    this.router.navigate(['/add-member', this.competitionCode]);
   }
 }

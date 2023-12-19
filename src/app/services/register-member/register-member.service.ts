@@ -10,13 +10,13 @@ import { ResponseModel } from '../../core/request/response.model';
 })
 export class RegisterMemberService {
 
-  private getMembersUrl = "http://127.0.0.1:8080/api/v1/members";
+  private membersUrl = "http://127.0.0.1:8080/api/v1/members";
   private registerMemberUrl = "http://127.0.0.1:8080/api/v1/ranking";
 
   constructor(private http: HttpClient) { }
 
   getMembers(): Observable<Member[]>{
-    return this.http.get<Member[]>(this.getMembersUrl).pipe(
+    return this.http.get<Member[]>(this.membersUrl).pipe(
         map((res: any) => res.data)
     )
   }
@@ -26,10 +26,14 @@ export class RegisterMemberService {
   }
 
   searchByCriteria(criteria: string): Observable<Member[]> {
-    const url = `${this.getMembersUrl}/search/${criteria}`;
+    const url = `${this.membersUrl}/search/${criteria}`;
     return this.http.get<Member[]>(url).pipe(
       map((res: any) => res.data)
   )
+  }
+
+  addMember(member: Member): Observable<ResponseModel<Member>>{
+    return this.http.post<ResponseModel<Member>>(this.membersUrl, member);
   }
 
 }
