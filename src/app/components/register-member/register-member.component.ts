@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { NotificationsService } from '../notifications/services/notifications.service';
 
 @Component({
   selector: 'app-register-member',
@@ -21,7 +22,7 @@ export class RegisterMemberComponent {
   competitionCode: string = '';
   searchControl = new FormControl();
 
-  constructor(private register_member: RegisterMemberService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private register_member: RegisterMemberService, private route: ActivatedRoute, private router: Router, private notificationService: NotificationsService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -51,8 +52,12 @@ export class RegisterMemberComponent {
     this.register_member.registerMember(new CRanking(member, this.competitionCode)).subscribe({
       next: data => {
         this.onSuccessSave(data?.data);
+        this.notificationService.show(['Member added successfully'], 'success');
       },
-      error: (err)=>{console.log(err)}
+      error: (err)=>{
+        console.log(err)
+        this.notificationService.show(['Member already registered'], 'error');
+      }
     })
   }
 
