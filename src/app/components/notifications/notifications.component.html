@@ -1,0 +1,7 @@
+<div  *ngIf="messages && messages.length > 0" class="notification" [ngClass]="{'success': type === 'success', 'warning': type === 'warning', 'error': type === 'error'}">
+  <span class="close-btn" (click)="closeNotification()">X</span>
+  <ul>
+    <li *ngFor="let message of messages">{{ message }}</li>
+  </ul>
+
+</div>

@@ -5,11 +5,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CompetitionComponent } from './components/competition/competition.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, SidebarComponent, CompetitionComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, SidebarComponent, CompetitionComponent, NotificationsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CHunting, Hunting } from '../../models/hunting';
 import { HuntingService } from '../../services/hunting/hunting.service';
 import { Fish } from '../../models/fish';
+import { NotificationsService } from '../notifications/services/notifications.service';
 
 @Component({
   selector: 'app-hunting',
@@ -22,7 +23,7 @@ export class HuntingComponent {
   memberString: string = '';
   fishes: Fish[] = [];
 
-  constructor(private huntingService: HuntingService, private router: Router, private route: ActivatedRoute){}
+  constructor(private huntingService: HuntingService, private router: Router, private route: ActivatedRoute, private notificationService: NotificationsService){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -45,9 +46,13 @@ export class HuntingComponent {
     this.huntingService.addHunting(this.toSave).subscribe({
       next: data => {
         console.log(data?.data);
+        this.notificationService.show(['Hunt added successfully'], 'success');
         this.onSuccessSave(data?.data);
       },
-      error: (err)=>{console.log(err)}
+      error: (err)=>{
+        console.log(err)
+        this.notificationService.show(['Weight is less than average'], 'error');
+      }
     })
   }
 
